@@ -192,6 +192,8 @@ tcpip_adapter_if_t tcpip_adapter_if_from_esp_netif(esp_netif_t *esp_netif)
 
 esp_err_t tcpip_adapter_get_ip_info(tcpip_adapter_if_t tcpip_if, tcpip_adapter_ip_info_t *ip_info)
 {
+    if(tcpip_if == TCPIP_ADAPTER_IF_STA)
+        tcpip_if = TCPIP_ADAPTER_IF_ETH;
     return esp_netif_get_ip_info(netif_from_if(tcpip_if), (esp_netif_ip_info_t *)ip_info);
 }
 
